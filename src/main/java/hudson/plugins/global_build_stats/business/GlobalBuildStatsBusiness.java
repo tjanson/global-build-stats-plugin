@@ -33,6 +33,7 @@ import org.jfree.chart.title.LegendTitle;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
 
+import org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject;
 import com.cloudbees.hudson.plugins.folder.Folder;
 
 public class GlobalBuildStatsBusiness {
@@ -112,6 +113,13 @@ public class GlobalBuildStatsBusiness {
         if (item instanceof Folder){
             Folder f = (Folder) item;
             for (TopLevelItem i : f.getItems()){
+                recursivelyAddBuilds(results, i);
+            }
+        }
+
+        if (item instanceof WorkflowMultiBranchProject) {
+            WorkflowMultiBranchProject w = (WorkflowMultiBranchProject) item;
+            for (TopLevelItem i : w.getItems()) {
                 recursivelyAddBuilds(results, i);
             }
         }
