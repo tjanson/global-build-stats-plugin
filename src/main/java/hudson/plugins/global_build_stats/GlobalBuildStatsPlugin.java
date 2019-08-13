@@ -258,7 +258,7 @@ public class GlobalBuildStatsPlugin extends Plugin {
         }
     }
 
-        /**
+    /**
      * At the end of every pipeline job, let's gather job result informations into global build stats
      * persisted data
      */
@@ -279,10 +279,11 @@ public class GlobalBuildStatsPlugin extends Plugin {
         @Override
         public void onDeleted(WorkflowRun w) {
             super.onDeleted(w);
+
             getPluginBusiness().onBuildDeleted(w);
         }
     }
-    
+
     public static GlobalBuildStatsBusiness getPluginBusiness() {
 		// Retrieving global build stats plugin & adding build result to the registered build
 		// result
